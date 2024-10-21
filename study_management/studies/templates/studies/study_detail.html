@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Study</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>View Study</h1>
+        <table>
+            <tr>
+                <th>Study Name:</th>
+                <td>{{ study.name }}</td>
+            </tr>
+            <tr>
+                <th>Study Description:</th>
+                <td>{{ study.description }}</td>
+            </tr>
+            <tr>
+                <th>Study Phase:</th>
+                <td>{{ study.get_phase_display }}</td>
+            </tr>
+            <tr>
+                <th>Sponsor Name:</th>
+                <td>{{ study.sponsor_name }}</td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <a href="{% url 'study-update' study.pk %}" class="btn">Edit</a>
+            <a href="{% url 'study-list' %}" class="btn">Back to List</a>
+        </div>
+    </div>
+</body>
+</html>

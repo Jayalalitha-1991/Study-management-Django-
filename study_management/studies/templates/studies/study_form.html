@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Edit Study{% else %}Add Study{% endif %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if form.instance.pk %}Edit Study{% else %}Add Study{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.name.id_for_label }}">Study Name:</label>
+                {{ form.name }}
+            </div>
+            <div>
+                <label for="{{ form.description.id_for_label }}">Study Description:</label>
+                {{ form.description }}
+            </div>
+            <div>
+                <label for="{{ form.phase.id_for_label }}">Study Phase:</label>
+                {{ form.phase }}
+            </div>
+            <div>
+                <label for="{{ form.sponsor_name.id_for_label }}">Sponsor Name:</label>
+                {{ form.sponsor_name }}
+            </div>
+            <div class="buttons">
+                <input type="submit" value="{% if form.instance.pk %}Update{% else %}Save{% endif %}" class="btn">
+                <a href="{% url 'study-list' %}" class="btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

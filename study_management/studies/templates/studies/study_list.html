@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Study Management</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Study name</th>
+                    <th>Study Phase</th>
+                    <th>Sponsor Name</th>
+                    <th>Study Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for study in studies %}
+                <tr>
+                    <td>{{ study.name }}</td>
+                    <td>{{ study.get_phase_display }}</td>
+                    <td>{{ study.sponsor_name }}</td>
+                    <td>{{ study.description }}</td>
+                    <td>
+                        <a href="{% url 'study-detail' study.pk %}">View</a> |
+                        <a href="{% url 'study-update' study.pk %}">Edit</a>
+                        <a href="{% url 'study-delete' study.pk %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="buttons">
+            <a href="{% url 'study-create' %}" class="btn">Add Study</a>
+        </div>
+    </div>
+</body>
+</html>
